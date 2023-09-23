@@ -5,14 +5,26 @@ import java.util.*;
 
 public class MapSorter {
 
-    public  <String, Integer extends Comparable<? super Integer>>
-    List<Map.Entry<String, Integer>> sort(Map<String, Integer> map) {
+    public Map<String, Integer> sort(Map<String, Integer> map){
+        MyComparator comp=new MyComparator(map);
 
-        List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(map.entrySet());
+        Map<String,Integer> newMap = new TreeMap(comp);
+        newMap.putAll(map);
+        return newMap;
+    }
 
-        Collections.sort(sortedEntries,
-                (e1, e2) -> e2.getValue().compareTo(e1.getValue())
-        );
-        return sortedEntries;
+    static class MyComparator implements Comparator {
+
+        Map map;
+
+        public MyComparator(Map map) {
+            this.map = map;
+        }
+
+        public int compare(Object o1, Object o2) {
+
+            return ((Integer) map.get(o2)).compareTo((Integer) map.get(o1));
+
+        }
     }
 }

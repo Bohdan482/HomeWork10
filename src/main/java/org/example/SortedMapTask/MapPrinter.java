@@ -3,10 +3,10 @@ package org.example.SortedMapTask;
 import java.util.*;
 
 public class MapPrinter {
-    public void print(List<Map.Entry<String, Integer>> list) {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
-        }
-    }
+     public void print(Map<String, Integer> map){
+         for (Map.Entry<String, Integer> entry : map.entrySet()) {
+             System.out.println(entry.getKey() + " " + entry.getValue().toString());
+         }
+     }
     }
 
